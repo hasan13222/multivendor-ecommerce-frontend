@@ -1,0 +1,12 @@
+.categories .item:first-of-type {
+  border-left: 1px solid white;
+}
+.categories button {
+  transform: skewX(19deg);
+}
+.categories .item {
+  border-right: 1px solid white;
+  transform: skewX(-36deg);
+  padding: 0 25px;
+}
+

@@ -1,0 +1,22 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170 70" width="60" height="25">
+	<title>New Project</title>
+	<defs>
+		<image  width="170" height="70" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKoAAABGAQMAAABmPp04AAAAAXNSR0IB2cksfwAAAANQTFRF////p8QbyAAAABtJREFUeJxjZMAKGEeFR4VHhUeFR4VHhYkTBgDljQBHgvNGLwAAAABJRU5ErkJggg=="/>
+		<image width="16" height="16" id="img2" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAXgAAAF4B+NkP+QAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAGHSURBVDiNldM9a1RREAbgZ8xqiCktrLYRshExgXSC2AfSqYVaWZhY2CupJAHBFJYWUUEbEwhoJf4BBW3ELsUGhEgKGztjsJCx2Fk5Ltt44HJm3vm4M++ZiczUnojo4XKpJ+v+WffrzOz/4z9MEBGBFRwv21l8KPkCdnECv7CZw8C6A08wm5mGH25jZQSbLd/BzwtcxnzrWPgiFsfg81geFtFDHxP/kWCiYnrHcAPbmBshcxJLWCq5PXMVc72D03iHuxHxEa/KaQ0PS34cEfdLvlKkvsEleIv1Km0Gq2WcbkqeLmwVM4WtV6yd0f6xMabvjTE87BzDfmb+HunxICK6DR9dHLQOFbPfwWFELGTm58a+i0cR8aX0M9gcIXkBPxg841pT2iSeY6rBpgqbbLA19DqZ2Y+IbxHxEl8r4b3MPGrKPYqIB9iKiD108T4z++0oPzN436vGD89F3MI5PFWjPLpMN3EK53EnMw8b2xY+4TteDJfpb4KGnB6uldo12M49dLA9us5/AJVeDv5h5qkfAAAAAElFTkSuQmCC"/>
+	</defs>
+	<style>
+		tspan { white-space:pre } 
+		.t0 { font-size: 24px;fill: #000000;font-weight: 400;font-family: "DejaVuSans", "DejaVu Sans" } 
+		.t1 { font-size: 80px;fill: #5eb06c;font-weight: 700;font-family: "Inter-Bold", "Inter" } 
+	</style>
+	<use id="Background" href="#img1" x="0" y="0"/>
+	<text id="rr" style="transform: matrix(1,0,0,1,56,28)" >
+		<tspan x="0" y="0" class="t0">r</tspan><tspan  y="0" class="t0">r
+</tspan>
+	</text>
+	<text id="SPH" style="transform: matrix(1,0,0,1,4,64)" >
+		<tspan x="0" y="0" class="t1">S</tspan><tspan  y="0" class="t1">P</tspan><tspan  y="0" class="t1">H
+</tspan>
+	</text>
+	<use id="football" href="#img2" transform="matrix(2.188,0,0,2.188,67,8)"/>
+</svg>

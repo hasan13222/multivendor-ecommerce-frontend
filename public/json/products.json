@@ -1,0 +1,222 @@
+[
+  {
+    "name": "Sports Jersey",
+    "category": "Sportswear",
+    "description": "A comfortable sports jersey made from breathable, sweat-absorbing fabric.",
+    "brand": "SportBrand",
+    "stock": 50,
+    "rating": 4.5,
+    "reviews": 1,
+    "price": 30,
+    "image": "https://res.cloudinary.com/ddefobmax/image/upload/v1720849333/jersey_l50og8.png"
+  },
+  {
+    "name": "Sports Trouser",
+    "category": "Sportswear",
+    "description": "Durable and comfortable trousers for sports activities.",
+    "brand": "SportBrand",
+    "stock": 40,
+    "rating": 4.2,
+    "reviews": 1,
+    "price": 25,
+    "image": "https://res.cloudinary.com/ddefobmax/image/upload/v1720849334/trouser_sjeh0s.png"
+  },
+  {
+    "name": "Sports Socks",
+    "category": "Sportswear",
+    "description": "Breathable and cushioned sports socks for maximum comfort.",
+    "brand": "SportBrand",
+    "stock": 100,
+    "rating": 4.7,
+    "reviews": 1,
+    "price": 10,
+    "image": "https://res.cloudinary.com/ddefobmax/image/upload/v1720849334/socks_nrggtx.png"
+  },
+  {
+    "name": "Sports Shoes",
+    "category": "Sportswear",
+    "description": "High-performance sports shoes with excellent grip and support.",
+    "brand": "SportBrand",
+    "stock": 30,
+    "rating": 4.8,
+    "reviews": 1,
+    "price": 60,
+    "image": "https://res.cloudinary.com/ddefobmax/image/upload/v1720849335/shoes_wcsz4z.png"
+  },
+  {
+    "name": "Protective Gloves",
+    "category": "Protective Gear",
+    "description": "High-quality gloves for protection during sports.",
+    "brand": "ProtectBrand",
+    "stock": 25,
+    "rating": 4.6,
+    "reviews": 1,
+    "price": 20,
+    "image": "https://res.cloudinary.com/ddefobmax/image/upload/v1720849335/cricket-gloves_povmyv.jpg"
+  },
+  {
+    "name": "Helmet",
+    "category": "Protective Gear",
+    "description": "Durable helmet for head protection during sports.",
+    "brand": "ProtectBrand",
+    "stock": 15,
+    "rating": 4.4,
+    "reviews": 1,
+    "price": 50,
+    "image": "https://res.cloudinary.com/ddefobmax/image/upload/v1720849332/helmet_mja4pa.jpg"
+  },
+  {
+    "name": "Protective Pad",
+    "category": "Protective Gear",
+    "description": "Comfortable and protective pads for sports.",
+    "brand": "ProtectBrand",
+    "stock": 20,
+    "rating": 4.3,
+    "reviews": 1,
+    "price": 25,
+    "image": "https://res.cloudinary.com/ddefobmax/image/upload/v1720849335/cricket-pad_u0dzgw.png"
+  },
+  {
+    "name": "Cricket Ball",
+    "category": "Cricket Gear",
+    "description": "High-quality cricket ball for professional play.",
+    "brand": "CricketBrand",
+    "stock": 30,
+    "rating": 4.5,
+    "reviews": 1,
+    "price": 15,
+    "image": "https://res.cloudinary.com/ddefobmax/image/upload/v1720849335/cricket-ball_yqabpo.png"
+  },
+  {
+    "name": "Cricket Bat",
+    "category": "Cricket Gear",
+    "description": "Professional-grade cricket bat for powerful hits.",
+    "brand": "CricketBrand",
+    "stock": 20,
+    "rating": 4.7,
+    "reviews": 1,
+    "price": 100,
+    "image": "https://res.cloudinary.com/ddefobmax/image/upload/v1720849335/cricket-bat_fbkifc.jpg"
+  },
+  {
+    "name": "Cricket Stump",
+    "category": "Cricket Gear",
+    "description": "Durable and lightweight cricket stumps.",
+    "brand": "CricketBrand",
+    "stock": 15,
+    "rating": 4.2,
+    "reviews": 1,
+    "price": 30,
+    "image": "https://res.cloudinary.com/ddefobmax/image/upload/v1720849335/cricket-stumb_wk2igc.jpg"
+  },
+  {
+    "name": "Football",
+    "category": "Football Gear",
+    "description": "High-quality football for all types of play.",
+    "brand": "FootballBrand",
+    "stock": 40,
+    "rating": 4.6,
+    "reviews": 1,
+    "price": 25,
+    "image": "https://res.cloudinary.com/ddefobmax/image/upload/v1720849333/football_bssyrt.png"
+  },
+  {
+    "name": "Goalpost",
+    "category": "Football Gear",
+    "description": "Sturdy and easy-to-assemble football goalpost.",
+    "brand": "FootballBrand",
+    "stock": 10,
+    "rating": 4.5,
+    "reviews": 1,
+    "price": 150,
+    "image": "https://res.cloudinary.com/ddefobmax/image/upload/v1720849332/football-net_zi0twq.jpg"
+  },
+  {
+    "name": "Tennis Racket",
+    "category": "Tennis & Badminton Gear",
+    "description": "Lightweight and durable tennis racket.",
+    "brand": "TennisBrand",
+    "stock": 35,
+    "rating": 4.7,
+    "reviews": 1,
+    "price": 50,
+    "image": "https://res.cloudinary.com/ddefobmax/image/upload/v1720849333/racket_h9o0bh.png"
+  },
+  {
+    "name": "Badminton Racket",
+    "category": "Tennis & Badminton Gear",
+    "description": "High-quality badminton racket for professional play.",
+    "brand": "BadmintonBrand",
+    "stock": 25,
+    "rating": 4.6,
+    "reviews": 1,
+    "price": 40,
+    "image": "https://res.cloudinary.com/ddefobmax/image/upload/v1720849333/racket_h9o0bh.png"
+  },
+  {
+    "name": "Tennis Ball",
+    "category": "Tennis & Badminton Gear",
+    "description": "Durable tennis balls for consistent play.",
+    "brand": "TennisBrand",
+    "stock": 50,
+    "rating": 4.5,
+    "reviews": 1,
+    "price": 10,
+    "image": "https://res.cloudinary.com/ddefobmax/image/upload/v1720849333/tennis-ball_tdu7lf.png"
+  },
+  {
+    "name": "Shuttlecock",
+    "category": "Tennis & Badminton Gear",
+    "description": "High-quality shuttlecocks for badminton.",
+    "brand": "BadmintonBrand",
+    "stock": 60,
+    "rating": 4.7,
+    "reviews": 1,
+    "price": 8,
+    "image": "https://res.cloudinary.com/ddefobmax/image/upload/v1720849333/shuttlecock_ry2j5m.png"
+  },
+  {
+    "name": "TT Ball",
+    "category": "Table Tennis Gear",
+    "description": "High-quality table tennis balls for professional play.",
+    "brand": "TTBrand",
+    "stock": 70,
+    "rating": 4.8,
+    "reviews": 1,
+    "price": 5,
+    "image": "https://res.cloudinary.com/ddefobmax/image/upload/v1720849334/tt-ball_znhqk4.jpg"
+  },
+  {
+    "name": "TT Table",
+    "category": "Table Tennis Gear",
+    "description": "Professional-grade table tennis table.",
+    "brand": "TTBrand",
+    "stock": 5,
+    "rating": 4.9,
+    "reviews": 1,
+    "price": 200,
+    "image": "https://res.cloudinary.com/ddefobmax/image/upload/v1720849334/tt-table_wc0z9s.jpg"
+  },
+  {
+    "name": "TT Bat",
+    "category": "Table Tennis Gear",
+    "description": "High-performance table tennis bats.",
+    "brand": "TTBrand",
+    "stock": 30,
+    "rating": 4.6,
+    "reviews": 1,
+    "price": 20,
+    "image": "https://res.cloudinary.com/ddefobmax/image/upload/v1720849334/tt-bat_gxyhqs.jpg"
+  },
+  {
+    "name": "TT Net",
+    "category": "Table Tennis Gear",
+    "description": "Durable and easy-to-setup table tennis net.",
+    "brand": "TTBrand",
+    "stock": 20,
+    "rating": 4.4,
+    "reviews": 1,
+    "price": 15,
+    "image": "https://res.cloudinary.com/ddefobmax/image/upload/v1720849334/tt-net_dqwonp.jpg"
+  }
+]

@@ -8,6 +8,7 @@ import { jwtDecode } from "jwt-decode";
 import { toast } from "sonner";
 const MenuSection = () => {
   const { cartItems } = useAppSelector((state) => state.cart);
+  console.log(cartItems)
 
   const navigate = useNavigate();
   let decoded: any;

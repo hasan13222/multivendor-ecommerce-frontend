@@ -1,8 +1,13 @@
 import { useForm } from "react-hook-form";
+import { useCreateContactMutation } from "../../redux/features/contact/contactApi";
+import { toast } from "sonner";
 
 const ContactForm = () => {
+
+  const [addContact] = useCreateContactMutation(undefined)
   // react hook form options
   const {
+    reset,
     register,
     handleSubmit,
     formState: { errors },
@@ -10,7 +15,11 @@ const ContactForm = () => {
 
   // getting client contact message
   const onSubmit = async (data:any) => {
-    console.log(data);
+    const addedContact = await addContact(data);
+    if (addedContact.data){
+      toast("Your Message has been sent successfully");
+      reset();
+    }
   };
   return (
     <>

@@ -1,4 +1,4 @@
-import { Layout, Modal, Spin } from "antd";
+import { Layout, Spin } from "antd";
 import { FaAngleUp, FaBars } from "react-icons/fa";
 import { useGetProductsQuery } from "../../redux/features/product/productApi";
 import Product from "../../components/ui/Product";
@@ -8,27 +8,29 @@ import { CustomError } from "../../types/baseQueryApi";
 // import { categories } from "../../constants/categories";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
-  clearFilter,
   setCategory,
-  setSearchTerm,
   // setSort,
 } from "../../redux/features/product/productQuerySlice";
 import { useNavigate } from "react-router-dom";
-import { Fragment, SyntheticEvent, useEffect, useRef, useState } from "react";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { setFilterModalOpen } from "../../redux/features/product/productSlice";
-import { CiFilter } from "react-icons/ci";
-import FilterForm from "../../components/form/FilterForm";
+import { Fragment, useState } from "react";
+// import { Fragment, SyntheticEvent, useEffect, useRef, useState } from "react";
+// import InfiniteScroll from "react-infinite-scroll-component";
+// import { setFilterModalOpen } from "../../redux/features/product/productSlice";
+// import { CiFilter } from "react-icons/ci";
+// import FilterForm from "../../components/form/FilterForm";
 // import { RiArrowUpDownLine } from "react-icons/ri";
 import { useGetCategoriesQuery } from "../../redux/features/category/categoryApi";
+import Slider from "../../components/ui/Slider";
+import ChooseUsItem from "../../components/ui/ChooseUsItem";
+import "../../styles/discount.css";
+import { useCreateNewsletterMutation } from "../../redux/features/newsletter/newsletterApi";
+import { toast } from "sonner";
 
 const { Header } = Layout;
 const Home = () => {
   const [showCategories, setShowCategories] = useState(false);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [hasMore, setHasMore] = useState(true);
-  const [postLimit, setPostLimit] = useState(8);
 
   const { data: categories } = useGetCategoriesQuery(undefined);
   // const { data, isLoading, isFetching, isError, error } = useGetProductsQuery({
@@ -39,68 +41,37 @@ const Home = () => {
   const { searchTerm, category, minPrice, maxPrice } = useAppSelector(
     (state) => state.productQuery
   );
-  const { filterModalOpen } = useAppSelector((state) => state.product);
+  // const { filterModalOpen } = useAppSelector((state) => state.product);
 
   const { data, isError, error, isLoading, isFetching }: Record<string, any> =
     useGetProductsQuery({
       searchTerm,
-      limit: postLimit,
+      limit: 4,
       category,
       minPrice,
       maxPrice,
     });
 
-  const searchFormRef = useRef<HTMLFormElement>(null);
-  // const onPageChange = (page: number) => {
-  //   dispatch(setPage(page));
-  // };
-
-  const handleSearch = (e: SyntheticEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const searchText = e.currentTarget.searchText.value;
-
-    dispatch(setSearchTerm(searchText));
-  };
-
-  const handleCancel = () => {
-    dispatch(setFilterModalOpen(false));
-  };
-
-  const showFilterModal = () => {
-    dispatch(setFilterModalOpen(true));
-  };
-
-  const handleClearFilter = () => {
-    dispatch(setSearchTerm(""));
-    dispatch(clearFilter());
-    searchFormRef.current?.reset();
-  };
-
-  // const sortHandler = () => {
-  //   if (sort === "price") {
-  //     dispatch(setSort("-price"));
-  //   } else {
-  //     dispatch(setSort("price"));
-  //   }
-  // };
-
-  async function loadData() {
-    if (data?.data?.length < postLimit) {
-      setHasMore(false);
-    } else {
-      setPostLimit((prev) => prev + 4);
-    }
-  }
+  const [addNewsletter] = useCreateNewsletterMutation(undefined);
 
   const categoryHandler = (category: string) => {
     dispatch(setCategory(category));
     navigate("/products");
   };
-  useEffect(() => {
-    loadData();
-  }, []);
+
+  async function newsletterHandler(e:any){
+    e.preventDefault();
+    const addedNewsletter = await addNewsletter({email: e.target.email.value})
+    if(addedNewsletter.data){
+      toast("You have successfully subscribed to the newsletter");
+      e.target.reset();
+    }
+  
+  }
+
   return (
     <>
+      <Slider />
       <Header
         className="bg-primary text-white"
         style={{
@@ -147,6 +118,7 @@ const Home = () => {
         </div>
       </Header>
       {/* search filter row */}
+      {/* 
       <div className="container mx-auto">
         <div className="search_filter flex flex-wrap items-center gap-4 my-4">
           <button
@@ -181,39 +153,87 @@ const Home = () => {
           >
             Clear Search & Filter
           </button>
-          {/* <div className="justify-self-end">
-            <button onClick={sortHandler} className="btn btn-accent text-white">
-              Sort <RiArrowUpDownLine />
-            </button>
-          </div> */}
+         
         </div>
       </div>
+      */}
 
       {/* all products */}
       <div className="featured_section container mx-auto px-3 py-8">
-        {/* <h2 className="font-bold text-3xl mb-5">Featured Products</h2> */}
+        <h2 className="font-bold text-3xl mb-5">Recommended For You</h2>
         {isLoading && isFetching && (
           <Spin tip="Loading" size="large">
             {content}
           </Spin>
         )}
         {isError && <p>{(error as CustomError)?.data?.message}</p>}
-        <InfiniteScroll
-          dataLength={postLimit}
-          next={loadData}
-          hasMore={hasMore}
-          loader={<p>Loading...</p>}
-          endMessage={<p>No more data to load.</p>}
-        >
-          <div className="featured_products grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-7">
-            {data?.data?.map((product: TProduct) => (
-              <Fragment key={product.id}>
-                <Product item={product} />
-              </Fragment>
-            ))}
-          </div>
-        </InfiniteScroll>
+        <div className="featured_products grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-7">
+          {data?.data?.map((product: TProduct) => (
+            <Fragment key={product.id}>
+              <Product item={product} />
+            </Fragment>
+          ))}
+        </div>
       </div>
+
+      {/* promotion section */}
+      <div className="container my-8 mx-auto text-center text-white">
+        <div className="discount rounded-md">
+          <div className="bg-black/90 py-24 rounded-md">
+            <h2 className="scroll-m-20 text-bgclr text-5xl italic font-semibold tracking-tight mb-5">
+              Huge Discount !!!
+            </h2>
+            <p className="text-2xl text-bgclr mb-3">
+              Use Coupon code B71 to get upto $71 discount on your product
+              purchase.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* why choose us */}
+      <div className="container my-8 mx-auto">
+        <h2 className="scroll-m-20 text-3xl font-semibold tracking-tight first:mt-0">
+          Why Choose EcoHub
+        </h2>
+        <div className="chooseUs flex items-end mt-1">
+          <ul className="chooseUs__items pl-8">
+            <ChooseUsItem />
+          </ul>
+          <div className="img_wrapper -ml-5">
+            <img
+              className="max-h-[320px] object-contain"
+              src="/customer.png"
+              alt="smiling customer"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* newsletter section */}
+      <div className="container my-8 mx-auto text-center text-white/90">
+        <div className="discount newsletter rounded-md">
+          <div className="bg-primary/50 py-24 rounded-md">
+            <h2 className="scroll-m-20 text-bgclr text-3xl italic font-semibold tracking-tight mb-5">
+              Subscribe to our Newsletter
+            </h2>
+            <form onSubmit={newsletterHandler} className="flex gap-4 items-center justify-center">
+              <input
+                className="form-input p-4 rounded-md"
+                type="email"
+                name="email"
+                placeholder="Put Your Email Here"
+              />
+              <input
+                className="btn bg-secondary"
+                type="submit"
+                value="Subscribe"
+              />
+            </form>
+          </div>
+        </div>
+      </div>
+
       <button
         onClick={() =>
           window.scrollTo({

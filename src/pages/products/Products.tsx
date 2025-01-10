@@ -1,49 +1,46 @@
 import Product from "../../components/ui/Product";
 import { CiFilter } from "react-icons/ci";
 import { useGetProductsQuery } from "../../redux/features/product/productApi";
-import { Modal,  Spin } from "antd";
+import { Modal, Pagination, Spin } from "antd";
 import { TProduct } from "../../types/productType";
 import { content } from "../../components/ui/Loading";
 import { CustomError } from "../../types/baseQueryApi";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
   clearFilter,
+  setPage,
   setSearchTerm,
 } from "../../redux/features/product/productQuerySlice";
-import { Fragment, SyntheticEvent, useEffect, useRef, useState } from "react";
+import { Fragment, SyntheticEvent, useRef } from "react";
 import { setFilterModalOpen } from "../../redux/features/product/productSlice";
 import FilterForm from "../../components/form/FilterForm";
 import { FaAngleUp } from "react-icons/fa";
-import InfiniteScroll from "react-infinite-scroll-component";
 
 const Products = () => {
   const dispatch = useAppDispatch();
-  const [hasMore, setHasMore] = useState(true);
-  const [postLimit, setPostLimit] = useState(8);
 
   // const { data, isLoading, isFetching, isError, error } = useGetProductsQuery({
   //   limit: postLimit,
   // });
 
   // search filter funcionality
-  const { searchTerm, category, minPrice, maxPrice } = useAppSelector(
+  const { searchTerm, category, minPrice, maxPrice, page } = useAppSelector(
     (state) => state.productQuery
   );
   const { filterModalOpen } = useAppSelector((state) => state.product);
 
-  const { data, isError, error, isLoading, isFetching } =
-    useGetProductsQuery({
-      searchTerm,
-      limit: postLimit,
-      category,
-      minPrice,
-      maxPrice,
-    });
+  const { data, isError, error, isLoading, isFetching } = useGetProductsQuery({
+    searchTerm,
+    limit: 6,
+    category,
+    minPrice,
+    maxPrice,
+    page: page,
+  });
+
+  console.log(data);
 
   const searchFormRef = useRef<HTMLFormElement>(null);
-  // const onPageChange = (page: number) => {
-  //   dispatch(setPage(page));
-  // };
 
   const handleSearch = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -66,88 +63,111 @@ const Products = () => {
     searchFormRef.current?.reset();
   };
 
-  // const sortHandler = () => {
-  //   if (sort === "price") {
-  //     dispatch(setSort("-price"));
-  //   } else {
-  //     dispatch(setSort("price"));
-  //   }
-  // };
-
-  async function loadData() {
-    if (data?.data?.length < postLimit) {
-      setHasMore(false);
-    } else {
-      setPostLimit((prev) => prev + 4);
-    }
-  }
-
-  useEffect(() => {
-    loadData();
-  }, []);
+  const onPageChange = (page: number) => {
+    dispatch(setPage(page));
+  };
 
   return (
     <>
       <div className="products container mx-auto px-3 py-8">
-        <h2 className="font-bold text-3xl mb-5">Our Products</h2>
-        {/* search filter row */}
-        <div className="search_filter flex flex-wrap items-center gap-4 mb-4">
-          <button
-            onClick={showFilterModal}
-            className="btn btn-accent text-white"
-          >
-            <CiFilter className="text-lg text-white"/> <span>Filter</span>
-          </button>
-
-          <Modal
-            title="Product Filter"
-            open={filterModalOpen}
-            footer={null}
-            onCancel={handleCancel}
-          >
-            <FilterForm />
-          </Modal>
-          <form ref={searchFormRef} onSubmit={handleSearch}>
-            <input
-              name="searchText"
-              type="text"
-              className="input input-bordered"
-              placeholder="type product name here..."
-            />
-            <button type="submit" className="btn btn-success text-white ml-1">
-              Search
-            </button>
-          </form>
-          <button
-            onClick={handleClearFilter}
-            className="btn btn-secondary text-white"
-          >
-            Clear Search & Filter
-          </button>
-          
-        </div>
-
-        {isLoading && isFetching && (
-          <Spin tip="Loading" size="large">
-            {content}
-          </Spin>
-        )}
-        {isError && <p>{(error as CustomError)?.data?.message}</p>}
-        <InfiniteScroll
-          dataLength={postLimit}
-          next={loadData}
-          hasMore={hasMore}
-          loader={<p>Loading...</p>}
-          endMessage={<p>No more data to load.</p>}
-        >
-          <div className="featured_products grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-7">
-            {data?.data?.map((product: TProduct) => (
-              <Fragment key={product.id}>
-                <Product item={product} />
-              </Fragment>
-            ))}
+        <div className="flex gap-4">
+          <div className="hidden md:block min-w-[220px] max-w-[250px] overflow-hidden">
+            <div className="search_filter flex flex-col flex-wrap gap-4 mb-4">
+            <button
+                onClick={handleClearFilter}
+                className="btn btn-secondary text-white"
+              >
+                Clear Search & Filter
+              </button>
+              <form ref={searchFormRef} onSubmit={handleSearch}>
+                <input
+                  name="searchText"
+                  type="text"
+                  className="input input-bordered"
+                  placeholder="Type product name here..."
+                />
+                <button
+                  type="submit"
+                  className="btn btn-success text-white mt-2 w-full"
+                >
+                  Search
+                </button>
+              </form>
+              <div>
+                <FilterForm />
+              </div>
+              
+              
+            </div>
           </div>
-        </InfiniteScroll>
+          <div className="products_wrapper">
+            <h2 className="font-bold text-3xl mb-5">Our Products</h2>
+            {/* search filter row */}
+            <div className="search_filter flex md:hidden flex-wrap items-center gap-4 mb-4">
+              <button
+                onClick={showFilterModal}
+                className="btn btn-accent text-white"
+              >
+                <CiFilter className="text-lg text-white" /> <span>Filter</span>
+              </button>
+
+              <Modal
+                title="Product Filter"
+                open={filterModalOpen}
+                footer={null}
+                onCancel={handleCancel}
+              >
+                <FilterForm />
+              </Modal>
+              <form ref={searchFormRef} onSubmit={handleSearch}>
+                <input
+                  name="searchText"
+                  type="text"
+                  className="input input-bordered"
+                  placeholder="type product name here..."
+                />
+                <button
+                  type="submit"
+                  className="btn btn-success text-white ml-1"
+                >
+                  Search
+                </button>
+              </form>
+              <button
+                onClick={handleClearFilter}
+                className="btn btn-secondary text-white"
+              >
+                Clear Search & Filter
+              </button>
+            </div>
+
+            {isLoading && isFetching && (
+              <Spin tip="Loading" size="large">
+                {content}
+              </Spin>
+            )}
+            {isError && <p>{(error as CustomError)?.data?.message}</p>}
+
+            <div className="featured_products grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-7">
+              {data?.data?.map((product: TProduct) => (
+                <Fragment key={product.id}>
+                  <Product item={product} />
+                </Fragment>
+              ))}
+            </div>
+
+            {/* pagination */}
+            {data?.data?.length > 0 ? <div className="flex justify-end mt-7">
+              <Pagination
+                onChange={onPageChange}
+                defaultCurrent={data?.meta?.page}
+                total={data?.meta?.total}
+                pageSize={data?.meta?.limit}
+              />
+            </div> : <h3>No Product Found</h3>}
+            
+          </div>
+        </div>
       </div>
       <button
         onClick={() =>

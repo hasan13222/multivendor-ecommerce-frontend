@@ -9,8 +9,9 @@ const productApi = baseApi.injectEndpoints({
         category = "",
         minPrice = 0,
         maxPrice = 100000000,
+        page = 1,
       }) => ({
-        url: `/product?limit=${limit}&searchTerm=${searchTerm}&category=${category}&minPrice=${minPrice}&maxPrice=${maxPrice}`,
+        url: `/product?limit=${limit}&page=${page}&searchTerm=${searchTerm}&category=${category}&minPrice=${minPrice}&maxPrice=${maxPrice}`,
         method: "GET",
       }),
       providesTags: ["products"],

@@ -18,6 +18,11 @@ import VendorProtected from "../pages/VendorProtected";
 import ManageShops from "../pages/admin/ManageShops";
 import ManageUsers from "../pages/admin/ManageUsers";
 import ManageCategories from "../pages/admin/ManageCategories";
+import ManageCoupons from "../pages/admin/ManageCoupons";
+import AboutUs from "../pages/about/AboutUs";
+import Contact from "../pages/contact/Contact";
+import Shops from "../pages/shop/Shops";
+import ProtectedPage from "../pages/ProtectedPage";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +38,18 @@ const router = createBrowserRouter([
         element: <Products />,
       },
       {
+        path: "shops",
+        element: <Shops />,
+      },
+      {
+        path: "about",
+        element: <AboutUs />,
+      },
+      {
+        path: "contact",
+        element: <Contact />,
+      },
+      {
         path: "products/shop/:shopId",
         element: <ShopProducts />,
       },
@@ -43,6 +60,10 @@ const router = createBrowserRouter([
       {
         path: "manage-category",
         element: <AdminProtected><ManageCategories /></AdminProtected>,
+      },
+      {
+        path: "manage-coupon",
+        element: <AdminProtected><ManageCoupons /></AdminProtected>,
       },
       {
         path: "manage-shops",
@@ -86,7 +107,7 @@ const router = createBrowserRouter([
       },
       {
         path: "checkout",
-        element: <Checkout />,
+        element: <ProtectedPage><Checkout /></ProtectedPage>,
       },
     ],
   },

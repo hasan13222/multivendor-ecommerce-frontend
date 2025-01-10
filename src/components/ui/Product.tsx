@@ -41,6 +41,7 @@ const Product = ({ item }: { item: TProduct }) => {
                 emptySymbol={<FaRegStar className="text-primary" />}
                 placeholderSymbol={<FaStar className="text-primary" />}
                 fullSymbol={<FaStar className="text-primary" />}
+                readonly={true}
               />
             </div>
             <div className="price">

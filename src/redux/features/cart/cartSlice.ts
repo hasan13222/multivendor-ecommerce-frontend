@@ -2,11 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 import { TCartItem } from "../../../pages/products/SingleProduct";
 
 const cartItems = localStorage.getItem("cartItems");
-const parsedItems = JSON.parse(cartItems as string);
+const parsedItems = cartItems ? JSON.parse(cartItems as string) : [];
 
 const cartItemIds = parsedItems?.map((item: TCartItem) => item.productId);
 const initialState = {
-  cartItems: JSON.parse(cartItems as string),
+  cartItems: parsedItems,
   cartItemIds,
   singleProductId: "",
 };

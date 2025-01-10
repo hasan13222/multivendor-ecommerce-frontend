@@ -220,13 +220,13 @@ const CheckoutForm = () => {
         <p className="text-red-500">
           {errors.payment_option && <span>This field is required</span>}
         </p> */}
-        <div className="flex gap-2">
+        <div className="gap-2">
           <p>Use "B71" to get Bijoy Dibash discount.</p>
           <br />
           <input className="border px-2 py-1 rounded-sm" ref={couponRef} type="text" placeholder="Coupon code" />
-          <button className="bg-orange-300 py-1 px-2" onClick={couponHandler}>Apply</button>
+          <button type="button" className="bg-orange-300 py-1 px-2" onClick={couponHandler}>Apply</button>
         </div>
-        <p>You have got {discount} Disount</p>
+        <p>You have got ${discount} Disount</p>
         <p>Please pay ${(state.totalPrice - discount).toFixed(2)}</p>
         <CardElement
           options={{

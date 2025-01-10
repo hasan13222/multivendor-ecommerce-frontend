@@ -2,14 +2,37 @@ import { useForm } from "react-hook-form";
 import { useLoginMutation } from "../../redux/features/auth/authApi";
 import { useNavigate } from "react-router-dom";
 import { CustomError } from "../../types/baseQueryApi";
+import { useEffect, useMemo, useState } from "react";
 
 const LoginForm = () => {
+  const [dfEmail, setDfEmail] = useState("");
+  const [dfPassword, setDfPassword] = useState("");
+
+  
+  const defaultValues = useMemo(() => {
+    return {email: dfEmail, password: dfPassword}
+  }, [dfEmail, dfPassword]);
+
+  function adminHandler(){
+    setDfEmail("jamil8305@gmail.com");
+    setDfPassword("123456");
+  }
+  function vendorHandler(){
+    setDfEmail("marzia8305@gmail.com");
+    setDfPassword("123456");
+  }
+  function customerHandler(){
+    setDfEmail("customer@gmail.com");
+    setDfPassword("123456");
+  }
+  
   // react hook form options
   const {
+    reset,
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({defaultValues});
 
   const [login, {isError, error}] = useLoginMutation(undefined);
 
@@ -23,6 +46,10 @@ const LoginForm = () => {
       navigate("/");
     }
   };
+
+  useEffect(() => {
+    reset(defaultValues)
+  }, [reset, defaultValues])
   return (
     <>
       <form className="flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)}>
@@ -56,7 +83,11 @@ const LoginForm = () => {
           type="submit"
           value="Submit"
         />
-        
+        <div className="flex gap-3">
+          <button className="btn btn-secondary" onClick={adminHandler} type="button">Admin</button>
+          <button className="btn btn-secondary" onClick={vendorHandler} type="button">Vendor</button>
+          <button className="btn btn-secondary" onClick={customerHandler} type="button">Customer</button>
+        </div>
       </form>
     </>
   );

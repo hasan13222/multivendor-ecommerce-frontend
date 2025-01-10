@@ -8,6 +8,9 @@ const Register = () => {
         <div className="col-span-2 sm:col-span-1">
           <RegisterForm />
         </div>
+        <div className="col-span-2 sm:col-span-1">
+          <img src="/signup.svg" alt="signup" />
+        </div>
       </div>
     </div>
   );

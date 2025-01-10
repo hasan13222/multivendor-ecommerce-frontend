@@ -10,8 +10,28 @@ export const menuItems:{title: string;path: string, access: string}[] = [
         access: "public",
     },
     {
+        title: 'Shops',
+        path: '/shops',
+        access: "public",
+    },
+    {
+        title: 'About Ecohub',
+        path: '/about',
+        access: "public",
+    },
+    {
+        title: 'Contact',
+        path: '/contact',
+        access: "public",
+    },
+    {
         title: 'Categories',
         path: '/manage-category',
+        access: "Admin",
+    },
+    {
+        title: 'Coupons',
+        path: '/manage-coupon',
         access: "Admin",
     },
     {

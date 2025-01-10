@@ -63,7 +63,7 @@ const SingleProduct = () => {
     } else {
       // check if shop is different. if different replace or cancel
       const isProductVedorDifferent =
-        cartProducts?.data[0].shopId !== data.data.shopId;
+        cartProducts?.data[0]?.shopId !== data?.data?.shopId;
       if (isProductVedorDifferent) {
         showModal();
       } else {

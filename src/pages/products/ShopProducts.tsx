@@ -73,7 +73,7 @@ const ShopProducts = () => {
     <>
       <div className="products container mx-auto px-3 py-8">
         <div className="shop flex items-center gap-5">
-          <img className="h-16 object-contain" src="/store.png" alt="store" />
+          <img className="h-16 object-contain" src={shop?.data?.logo || "/store.png"} alt="store" />
           <div>
             <h4 className="font-medium text-sm">{shop?.data?.name}</h4>
             <p>{shop?.data?.description}</p>

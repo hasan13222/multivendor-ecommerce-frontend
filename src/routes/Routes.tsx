@@ -23,6 +23,8 @@ import AboutUs from "../pages/about/AboutUs";
 import Contact from "../pages/contact/Contact";
 import Shops from "../pages/shop/Shops";
 import ProtectedPage from "../pages/ProtectedPage";
+import Dashboard from "../pages/dashboard/Dashboard";
+import DashboardLayout from "../components/layout/DashboardLayout";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +34,14 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: "dashboard",
+        element: (
+          <DashboardLayout>
+            <Dashboard />
+          </DashboardLayout>
+        ),
       },
       {
         path: "products",
@@ -59,23 +69,53 @@ const router = createBrowserRouter([
       },
       {
         path: "manage-category",
-        element: <AdminProtected><ManageCategories /></AdminProtected>,
+        element: (
+          <AdminProtected>
+            <DashboardLayout>
+              <ManageCategories />
+            </DashboardLayout>
+          </AdminProtected>
+        ),
       },
       {
         path: "manage-coupon",
-        element: <AdminProtected><ManageCoupons /></AdminProtected>,
+        element: (
+          <AdminProtected>
+            <DashboardLayout>
+              <ManageCoupons />
+            </DashboardLayout>
+          </AdminProtected>
+        ),
       },
       {
         path: "manage-shops",
-        element: <AdminProtected><ManageShops /></AdminProtected>,
+        element: (
+          <AdminProtected>
+            <DashboardLayout>
+              <ManageShops />
+            </DashboardLayout>
+          </AdminProtected>
+        ),
       },
       {
         path: "manage-users",
-        element: <AdminProtected><ManageUsers /></AdminProtected>,
+        element: (
+          <AdminProtected>
+            <DashboardLayout>
+              <ManageUsers />
+            </DashboardLayout>
+          </AdminProtected>
+        ),
       },
       {
         path: "manage-shop",
-        element: <VendorProtected><ManageShop /></VendorProtected>,
+        element: (
+          <VendorProtected>
+            <DashboardLayout>
+              <ManageShop />
+            </DashboardLayout>
+          </VendorProtected>
+        ),
       },
       {
         path: "my-order",
@@ -83,7 +123,11 @@ const router = createBrowserRouter([
       },
       {
         path: "my-shop-order",
-        element: <MyShopOrder />,
+        element: (
+          <DashboardLayout>
+            <MyShopOrder />
+          </DashboardLayout>
+        ),
       },
       {
         path: "login",
@@ -107,7 +151,11 @@ const router = createBrowserRouter([
       },
       {
         path: "checkout",
-        element: <ProtectedPage><Checkout /></ProtectedPage>,
+        element: (
+          <ProtectedPage>
+            <Checkout />
+          </ProtectedPage>
+        ),
       },
     ],
   },

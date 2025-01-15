@@ -1,35 +1,44 @@
-import  { useEffect, useState } from 'react';
-import { Carousel } from 'antd';
-
+import { Carousel } from "antd";
+import { useGetProductsQuery } from "../../redux/features/product/productApi";
+import { TProduct } from "../../types/productType";
+import { useNavigate } from "react-router-dom";
 
 const Slider = () => {
-    type TSliderItems = {
-        image?: string;
-    }
-    const [sliderItems, setSliderItems] = useState<TSliderItems[]>([]);
+  
 
-  const onChange = (currentSlide: number) => {
-    console.log(currentSlide);
-  };
+  const { data } = useGetProductsQuery({
+    limit: 3,
+  });
 
-  useEffect(() => {
-    fetch('/json/slider.json')
-    .then(res => res.json())
-    .then(data => setSliderItems(data))
-  }, [])
+  const navigate = useNavigate();
+
+  
   return (
     // hero slider
-    <Carousel autoplay autoplaySpeed={5000} afterChange={onChange} pauseOnHover={false}>
-        {sliderItems?.map(item => (
-            <div className='w-full max-h-[500px] overflow-hidden relative'>
-                <img className='w-full h-full object-cover' src={`/sliderImgs/${item?.image}`} alt="slider thumbnail" />
-                <div className="absolute w-full h-full left-0 top-0 flex flex-col justify-center items-center text-center text-white bg-black/50">
-                  <h1 className='text-2xl font-bold'>Shop Your Desired Products!!!</h1>
-                  <p className='text-base font-semibold'>Relax here, check with taking your enough time, select one, add that in cart and enjoy shopping</p>
-                </div>
-            </div>
-        ))}
-      
+    <Carousel
+      autoplay
+      autoplaySpeed={5000}
+      pauseOnHover={false}
+    >
+      {data?.data?.map((item: TProduct) => (
+        <div className="w-full max-h-[500px] overflow-hidden relative">
+          <img
+            className="w-full h-full object-cover"
+            src={item?.images[0]}
+            alt={item?.name}
+          />
+          <div className="absolute w-full h-full left-0 top-0 flex flex-col justify-center items-center text-center text-white bg-black/50">
+            <h1 className="text-2xl font-bold capitalize">
+            {item?.name} at ${item?.price}
+              
+            </h1>
+            <p className="text-base mb-2 font-semibold">
+            Shop Your Desired Product Here at Affordable Price!!!
+            </p>
+            <button onClick={() => navigate(`/products/${item.id}`)} className="bg-accentColor px-2 rounded-md py-1 text-white">Order Now</button>
+          </div>
+        </div>
+      ))}
     </Carousel>
   );
 };

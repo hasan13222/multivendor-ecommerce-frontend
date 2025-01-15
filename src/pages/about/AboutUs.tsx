@@ -2,7 +2,7 @@ const AboutUs = () => {
   return (
     <>
       <div className="about_us container mx-auto px-3 py-8">
-        <h2 className="font-bold text-3xl mb-2 text-center">About Ecohub</h2>
+        <h2 className="font-bold text-3xl mb-2">About Ecohub</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-center about_us">
           <div className="texts">

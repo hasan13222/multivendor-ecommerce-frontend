@@ -24,6 +24,11 @@ const MenuSection = () => {
   }
 
   const items: MenuProps["items"] = [
+    
+    {
+      label: <a href="/dashboard">Dashboard</a>,
+      key: "1",
+    },
     {
       label: (
         <button type="button" onClick={logoutHandler}>
@@ -65,11 +70,15 @@ const MenuSection = () => {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[300] mt-3 w-52 p-2 shadow"
             >
               {/* mobile menu */}
-              {menuItems.map((item) => (
-                <li key={item.title}>
-                  <NavLink to={`${item.path}`}>{item.title}</NavLink>
-                </li>
-              ))}
+              {menuItems.map((item) => {
+                if(item.access === "public"){
+                  return (
+                    <li key={item.title}>
+                      <NavLink to={`${item.path}`}>{item.title}</NavLink>
+                    </li>
+                  )
+                }
+              })}
             </ul>
           </div>
           <a className="pt-5 hover:text-accentColor" href="/">
@@ -84,7 +93,7 @@ const MenuSection = () => {
           <ul className="menu menu-horizontal px-1">
             {/* desktop menu */}
             {menuItems.map((item) => {
-              if (item.access === "public" || item.access === decoded?.role) {
+              if (item.access === "public") {
                 return (
                   <li key={item.title}>
                     <NavLink to={`${item.path}`}>{item.title}</NavLink>

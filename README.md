@@ -15,7 +15,7 @@
 
 ### Technology used
 
-    React, Redux, RTK Query, Tailwind, Shadcn
+    React, Redux, RTK Query, Tailwind, Ant-Design
 
 ### Follow the below instructions to run the application in your local machine
 

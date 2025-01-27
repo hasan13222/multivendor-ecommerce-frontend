@@ -60,7 +60,7 @@ const ManageCategories = () => {
 
         {isError && <p>{(error as CustomError)?.data?.message}</p>}
       </div>
-      <div className="manage_products container mx-auto px-3 py-8">
+      <div className="manage_products container mx-auto px-3 pb-8">
         {/* add product button */}
         <ConfigProvider
           theme={{
@@ -93,8 +93,8 @@ const ManageCategories = () => {
 
         {/* products table */}
         <div className="container mx-auto">
-          <h2 className="font-bold text-3xl my-5">All Categories</h2>
-          <table className="overflow-auto border">
+          {/* <h2 className="font-bold text-3xl my-5">All Categories</h2> */}
+          <table className="overflow-auto border w-full">
             <thead className="">
               <tr>
                 <th className="bg-primary text-white px-3 py-2">Category Name</th>
@@ -103,9 +103,9 @@ const ManageCategories = () => {
             </thead>
             <tbody>
               {categories?.data?.map((item: any) => (
-                <tr key={item.id}>
+                <tr className="border-b" key={item.id}>
                   <td className="text-center p-3">{item.name}</td>
-                  <td className="text-center flex p-3">
+                  <td className="text-center flex justify-center p-3">
                     <button
                       onClick={() => updateCategoryHandler(item.id, item.name)}
                       className="bg-secondary text-white px-2 py-1"

@@ -5,6 +5,8 @@ import Product from "../../components/ui/Product";
 import { TProduct } from "../../types/productType";
 import { content } from "../../components/ui/Loading";
 import { CustomError } from "../../types/baseQueryApi";
+import ScrollAnimation from "react-animate-on-scroll";
+import "animate.css/animate.compat.css"
 // import { categories } from "../../constants/categories";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
@@ -59,14 +61,15 @@ const Home = () => {
     navigate("/products");
   };
 
-  async function newsletterHandler(e:any){
+  async function newsletterHandler(e: any) {
     e.preventDefault();
-    const addedNewsletter = await addNewsletter({email: e.target.email.value})
-    if(addedNewsletter.data){
+    const addedNewsletter = await addNewsletter({
+      email: e.target.email.value,
+    });
+    if (addedNewsletter.data) {
       toast("You have successfully subscribed to the newsletter");
       e.target.reset();
     }
-  
   }
 
   return (
@@ -167,13 +170,15 @@ const Home = () => {
           </Spin>
         )}
         {isError && <p>{(error as CustomError)?.data?.message}</p>}
-        <div className="featured_products grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-7">
-          {data?.data?.map((product: TProduct) => (
-            <Fragment key={product.id}>
-              <Product item={product} />
-            </Fragment>
-          ))}
-        </div>
+        <ScrollAnimation animateIn="fadeIn">
+          <div className="featured_products grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-7">
+            {data?.data?.map((product: TProduct) => (
+              <Fragment key={product.id}>
+                <Product item={product} />
+              </Fragment>
+            ))}
+          </div>
+        </ScrollAnimation>
       </div>
 
       {/* promotion section */}
@@ -192,23 +197,25 @@ const Home = () => {
       </div>
 
       {/* why choose us */}
-      <div className="container my-8 mx-auto">
-        <h2 className="scroll-m-20 text-3xl font-semibold tracking-tight first:mt-0">
-          Why Choose EcoHub
-        </h2>
-        <div className="chooseUs flex items-end mt-1">
-          <ul className="chooseUs__items pl-8">
-            <ChooseUsItem />
-          </ul>
-          <div className="img_wrapper -ml-5">
-            <img
-              className="max-h-[320px] object-contain"
-              src="/customer.png"
-              alt="smiling customer"
-            />
+      <ScrollAnimation animateIn="fadeIn">
+        <div className="container my-8 mx-auto">
+          <h2 className="scroll-m-20 text-3xl font-semibold tracking-tight first:mt-0">
+            Why Choose EcoHub
+          </h2>
+          <div className="chooseUs flex items-end mt-1">
+            <ul className="chooseUs__items pl-8">
+              <ChooseUsItem />
+            </ul>
+            <div className="img_wrapper -ml-5">
+              <img
+                className="max-h-[320px] object-contain"
+                src="/customer.png"
+                alt="smiling customer"
+              />
+            </div>
           </div>
         </div>
-      </div>
+      </ScrollAnimation>
 
       {/* newsletter section */}
       <div className="container my-8 mx-auto text-center text-white/90">
@@ -217,7 +224,10 @@ const Home = () => {
             <h2 className="scroll-m-20 text-bgclr text-3xl italic font-semibold tracking-tight mb-5">
               Subscribe to our Newsletter
             </h2>
-            <form onSubmit={newsletterHandler} className="flex gap-4 items-center justify-center">
+            <form
+              onSubmit={newsletterHandler}
+              className="flex gap-4 items-center justify-center"
+            >
               <input
                 className="form-input p-4 rounded-md"
                 type="email"

@@ -12,7 +12,7 @@ const Product = ({ item }: { item: TProduct }) => {
   return (
     <>
     {/* product card */}
-      <div className="card w-full shadow-xl">
+      <div style={{transition: "bottom 0.3s ease-in-out"}} className="card w-full shadow-xl relative bottom-0 hover:bottom-2">
         <figure className="px-5 pt-5">
           <img
             src={item?.images[0]}

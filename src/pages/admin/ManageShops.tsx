@@ -49,8 +49,8 @@ const ManageShops = () => {
         {isError && <p>{(error as CustomError)?.data?.message}</p>}
       </div>
       <div className="container mx-auto">
-        <h2 className="font-bold text-3xl my-5">Manage Shops</h2>
-        <table className="overflow-auto border">
+        <h2 className="font-bold text-2xl mb-3">Manage Shops</h2>
+        <table className="overflow-auto border w-full">
           <thead className="">
             <tr>
               <th className="bg-primary text-white px-3 py-2">Logo</th>
@@ -61,11 +61,11 @@ const ManageShops = () => {
           </thead>
           <tbody>
             {data?.data?.map((item: any) => (
-              <tr key={item.id}>
-                <td className="text-center p-3">{item.logo}</td>
+              <tr className="border-b" key={item.id}>
+                <td className="text-center p-3"><img className="h-7 object-contain" src={item.logo}/></td>
                 <td className="text-center p-3">{item.name}</td>
                 <td className="text-center p-3">{item.status}</td>
-                <td className="text-center flex p-3">
+                <td className="text-center flex justify-center p-3">
                   <button
                     onClick={() => accountSuspendHandler(item.id, item.status)}
                     className="bg-secondary text-white px-2 py-1"

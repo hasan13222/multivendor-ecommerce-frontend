@@ -21,21 +21,21 @@ const Slider = () => {
       pauseOnHover={false}
     >
       {data?.data?.map((item: TProduct) => (
-        <div className="w-full max-h-[500px] overflow-hidden relative">
+        <div className="w-full max-h-[380px] overflow-hidden relative rounded-md">
           <img
             className="w-full h-full object-cover"
             src={item?.images[0]}
             alt={item?.name}
           />
-          <div className="absolute w-full h-full left-0 top-0 flex flex-col justify-center items-center text-center text-white bg-black/50">
+          <div className="absolute w-full h-full left-0 top-0 flex flex-col justify-center items-center text-center text-white bg-black/30">
             <h1 className="text-2xl font-bold capitalize">
-            {item?.name} at ${item?.price}
+            {item?.name}
               
             </h1>
             <p className="text-base mb-2 font-semibold">
-            Shop Your Desired Product Here at Affordable Price!!!
+            {item?.description}
             </p>
-            <button onClick={() => navigate(`/products/${item.id}`)} className="bg-accentColor px-2 rounded-md py-1 text-white">Order Now</button>
+            <button onClick={() => navigate(`/products/${item.id}`)} className="bg-accentColor px-2 rounded-md py-1 text-white hover:bg-black">Order Now</button>
           </div>
         </div>
       ))}

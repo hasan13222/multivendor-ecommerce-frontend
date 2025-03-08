@@ -8,7 +8,7 @@ import { jwtDecode } from "jwt-decode";
 import { toast } from "sonner";
 const MenuSection = () => {
   const { cartItems } = useAppSelector((state) => state.cart);
-  console.log(cartItems)
+  console.log(cartItems);
 
   const navigate = useNavigate();
   let decoded: any;
@@ -19,12 +19,11 @@ const MenuSection = () => {
 
   function logoutHandler() {
     localStorage.removeItem("token");
-    navigate('/login')
+    navigate("/login");
     toast("Logged out successfully");
   }
 
   const items: MenuProps["items"] = [
-    
     {
       label: <a href="/dashboard">Dashboard</a>,
       key: "1",
@@ -35,11 +34,11 @@ const MenuSection = () => {
           Logout
         </button>
       ),
-      key: "0",
+      key: "2",
     },
     {
       label: <a href="/change-password">Change Password</a>,
-      key: "1",
+      key: "3",
     },
   ];
 
@@ -48,7 +47,7 @@ const MenuSection = () => {
       {/* menu */}
       <div className="navbar bg-bgColor p-0 h-full border-b border-white">
         <div className="navbar-start">
-          <div className="dropdown">
+          <div className="dropdown mt-4">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -71,12 +70,12 @@ const MenuSection = () => {
             >
               {/* mobile menu */}
               {menuItems.map((item) => {
-                if(item.access === "public"){
+                if (item.access === "public") {
                   return (
                     <li key={item.title}>
                       <NavLink to={`${item.path}`}>{item.title}</NavLink>
                     </li>
-                  )
+                  );
                 }
               })}
             </ul>
@@ -84,7 +83,7 @@ const MenuSection = () => {
           <a className="pt-5 hover:text-accentColor" href="/">
             <div className="demo-logo">
               <p className="logo mr-10 relative">
-                <span className="text-5xl font-bold">EcoHub</span>
+                <span className="text-3xl font-bold">EcoHub</span>
               </p>
             </div>
           </a>

@@ -15,6 +15,7 @@ import { Fragment, SyntheticEvent, useRef } from "react";
 import { setFilterModalOpen } from "../../redux/features/product/productSlice";
 import FilterForm from "../../components/form/FilterForm";
 import { FaAngleUp } from "react-icons/fa";
+import { FaX } from "react-icons/fa6";
 
 const Products = () => {
   const dispatch = useAppDispatch();
@@ -75,20 +76,20 @@ const Products = () => {
             <div className="search_filter flex flex-col flex-wrap gap-4 mb-4">
             <button
                 onClick={handleClearFilter}
-                className="btn btn-secondary text-white"
+                className="py-2 rounded-md flex justify-center gap-1 items-center bg-black hover:bg-black/70 text-white"
               >
-                Clear Search & Filter
+                <FaX size={14}/> <span>Clear Search & Filter</span>
               </button>
               <form ref={searchFormRef} onSubmit={handleSearch}>
                 <input
                   name="searchText"
                   type="text"
-                  className="input input-bordered"
+                  className="py-2 border rounded-md px-2 w-full"
                   placeholder="Type product name here..."
                 />
                 <button
                   type="submit"
-                  className="btn btn-success text-white mt-2 w-full"
+                  className="bg-green-500 py-2 rounded-md hover:bg-green-400 text-white mt-2 w-full"
                 >
                   Search
                 </button>

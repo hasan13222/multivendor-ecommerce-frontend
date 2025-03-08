@@ -9,6 +9,7 @@ const VendorProtected = ({ children }: any) => {
   const token = localStorage.getItem("token");
   if (token) {
     decoded = jwtDecode(token) as CustomJwtPayload;
+    
   }
 
   useEffect(() => {
@@ -24,7 +25,7 @@ const VendorProtected = ({ children }: any) => {
     );
   }
 
-  if (decoded && decoded.role === "Vendor") {
+  if (decoded && decoded.role === "Vendor" && (Number(decoded.exp!*1000) > Date.now())) {
     return <>{children}</>;
   } else {
     return <Navigate to="/login" />;

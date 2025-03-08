@@ -24,7 +24,7 @@ const AdminProtected = ({ children }: any) => {
     );
   }
 
-  if (decoded && decoded.role === "Admin") {
+  if (decoded && decoded.role === "Admin" && (Number(decoded.exp!*1000) > Date.now())) {
     return <>{children}</>;
   } else {
     return <Navigate to="/login" />;

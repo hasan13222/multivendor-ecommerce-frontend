@@ -1,10 +1,11 @@
 .discount{
-    background: url('/discount.jpg') no-repeat;
+    background: url('/endjoy.jpg') no-repeat;
     background-size: cover;
 
 }
 .newsletter{
     background: url('/newsletter.jpg') no-repeat;
-    background-size: cover;
+    background-size: contain;
+    background-position: center center;
 
 }

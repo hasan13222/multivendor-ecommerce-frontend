@@ -9,6 +9,7 @@ const ProtectedPage = ({ children }: any) => {
   const token = localStorage.getItem("token");
   if (token) {
     decoded = jwtDecode(token) as CustomJwtPayload;
+    
   }
 
   useEffect(() => {
@@ -23,7 +24,7 @@ const ProtectedPage = ({ children }: any) => {
     );
   }
 
-  if (decoded) {
+  if (decoded && (Number(decoded.exp!*1000) > Date.now())) {
     return <>{children}</>;
   } else {
     return <Navigate to="/login" />;

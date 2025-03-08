@@ -7,6 +7,6 @@
 .categories .item {
   border-right: 1px solid white;
   transform: skewX(-36deg);
-  padding: 0 25px;
+  padding: 0 20px;
 }
 

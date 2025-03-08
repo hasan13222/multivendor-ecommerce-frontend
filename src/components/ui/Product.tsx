@@ -52,7 +52,7 @@ const Product = ({ item }: { item: TProduct }) => {
             <span className="text-sm font-semibold text-accentColor">
               In Stock: {item?.stock}
             </span>
-            <button onClick={() => navigate(`/products/${item.id}`)} className="btn bg-primary text-white">View Details</button>
+            <button onClick={() => navigate(`/products/${item.id}`)} className="btn btn-sm bg-primary text-white">View Details</button>
           </div>
         </div>
       </div>

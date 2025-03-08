@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { Button, Drawer } from "antd";
 import { FaBars } from "react-icons/fa";
+import '../../styles/dashboard.css'
 const DashboardLayout = ({children}: any) => {
   const [open, setOpen] = useState(false);
 

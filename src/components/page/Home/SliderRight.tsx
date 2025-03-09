@@ -23,7 +23,7 @@ const SliderRightProduct = ({ item }: { item: TProduct }) => {
             </h2>
           </div>
 
-          <p>{item?.description}</p>
+          <p>{item?.description.slice(0,57)}...</p>
 
           <div className="card-actions flex justify-between items-center">
             <button

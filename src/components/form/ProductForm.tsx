@@ -1,6 +1,6 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { TProductInput } from "../../types/productType";
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
   setLoading,
@@ -16,7 +16,12 @@ import { CustomError } from "../../types/baseQueryApi";
 import axios from "axios";
 import { useGetCategoriesQuery } from "../../redux/features/category/categoryApi";
 
-export default function ProductForm({shopId}:any) {
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+
+export default function ProductForm({shopId}:any) {  
+  const [value, setValue] = useState('');
+
   // redux product state
   const { formMode, productId } = useAppSelector((state) => state.product);
 
@@ -102,11 +107,11 @@ export default function ProductForm({shopId}:any) {
 
     // toggle add and update
     if (formMode === "add") {
-      res = await addProduct({...data, images, shopId});
+      res = await addProduct({...data, images, shopId, long_description: value});
     }
 
     if (formMode === "update") {
-      res = await updateProduct({ productId, data: {...data, images, shopId} });
+      res = await updateProduct({ productId, data: {...data, images: images.length === 0 ? data?.images : images, shopId, long_description: value} });
     }
 
     // success message after add or update
@@ -145,9 +150,11 @@ export default function ProductForm({shopId}:any) {
 
   // reset form data when form works as add product form
   useEffect(() => {
+    setValue(data?.data?.long_description);
     reset(defaultValues);
     if (formMode === "add") {
       reset({});
+      setValue("")
     }
   }, [data?.data?.image, reset, defaultValues, formMode]);
 
@@ -193,7 +200,7 @@ export default function ProductForm({shopId}:any) {
         </p>
       </div>
       <div className="flex flex-col">
-        <label>Descritption</label>
+        <label>Short Descritption</label>
         <input
           className="py-2 border rounded-md px-2"
           {...register("description", { required: formMode === "add" })}
@@ -201,6 +208,10 @@ export default function ProductForm({shopId}:any) {
         <p className="text-red-500">
           {errors.description && <span>This field is required</span>}
         </p>
+      </div>
+      <div className="flex flex-col">
+        <label>Descritption, Features & Specifications</label>
+        <ReactQuill theme="snow" value={value} onChange={setValue} />
       </div>
       <div className="flex flex-col">
         <label>Stock Quantity</label>

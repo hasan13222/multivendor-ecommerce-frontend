@@ -123,7 +123,7 @@ const SingleProduct = () => {
         )}
         {isError && <p>{(error as CustomError)?.data?.message}</p>}
       </div>
-      <div className="singleProduct container mx-auto px-3 py-8 flex items-center gap-8">
+      <div className="singleProduct container mx-auto px-3 pt-3 flex items-center gap-8">
         <div className="img_wrapper">
           <div className="big">
             <img
@@ -185,7 +185,6 @@ const SingleProduct = () => {
           <p className="text-accentColor font-semibold">
             Availability: {data?.data?.stock} in Stock
           </p>
-          <p>{data?.data?.description}</p>
           <p className="price font-bold text-lg">${data?.data?.price}</p>
           <div className="addToCart flex gap-4 items-center">
             <input
@@ -215,6 +214,10 @@ const SingleProduct = () => {
           </div>
         </div>
       </div>
+
+      {/* long description */}
+      <div className="container mx-auto px-3 pb-4"
+        dangerouslySetInnerHTML={{__html: data?.data?.long_description}} />
 
       {/* reviews */}
       <div className="reviews container mx-auto px-3 py-4">

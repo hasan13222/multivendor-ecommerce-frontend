@@ -30,7 +30,7 @@ const Product = ({ item }: { item: TProduct }) => {
             </button>
           </div>
 
-          <p>{item?.description}</p>
+          <p>{item?.description.slice(0,63)}...</p>
           <p>
             <span className="font-semibold">Code:</span> {item?.code}
           </p>

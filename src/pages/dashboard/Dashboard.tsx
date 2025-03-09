@@ -33,6 +33,7 @@ const Dashboard = () => {
     Record<string, any>[]
   >([]);
 
+
   // my shop
   const { data: myshop } = useGetMyShopQuery(undefined);
 
@@ -91,7 +92,6 @@ const Dashboard = () => {
               </p>
             </Card>
             <Card
-              style={{ marginTop: 16 }}
               type="inner"
               title="Total Order Placed"
               extra={<a href="my-shop-order">Explore</a>}

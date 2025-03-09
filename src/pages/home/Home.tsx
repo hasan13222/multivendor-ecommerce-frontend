@@ -33,7 +33,7 @@ const Home = () => {
 
   const { data, isError, error, isLoading, isFetching }: Record<string, any> =
     useGetProductsQuery({
-      limit: 8,
+      limit: 12,
     });
 
   const [addNewsletter] = useCreateNewsletterMutation(undefined);
@@ -60,7 +60,7 @@ const Home = () => {
 
       {/* slider */}
       <div className="slider_section featured_section container mx-auto px-3 py-8">
-        <div className="grid grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
           <div className="col-span-1">
             <Slider />
           </div>
@@ -74,7 +74,7 @@ const Home = () => {
       {/* why choose us */}
       <ScrollAnimation animateIn="fadeIn">
         <div className="container my-8 mx-auto">
-          <div className="chooseUs flex gap-5 justify-between mt-1 border rounded-md p-5">
+          <div className="chooseUs grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 justify-between mt-1 border rounded-md p-5">
             <div className="item flex items-center gap-3">
               <GrDeliver size={25} />
               <div className="text">
@@ -119,7 +119,7 @@ const Home = () => {
         )}
         {isError && <p>{(error as CustomError)?.data?.message}</p>}
         <ScrollAnimation animateIn="fadeIn">
-          <div className="featured_products grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-7">
+          <div className="featured_products grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-7">
             {data?.data?.slice(0, 4).map((product: TProduct) => (
               <Fragment key={product.id}>
                 <Product item={product} />
@@ -139,7 +139,7 @@ const Home = () => {
         )}
         {isError && <p>{(error as CustomError)?.data?.message}</p>}
         <ScrollAnimation animateIn="fadeIn">
-          <div className="featured_products grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-7">
+          <div className="featured_products grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-7">
             {data?.data?.slice(4, 8).map((product: TProduct) => (
               <Fragment key={product.id}>
                 <Product item={product} />
@@ -167,9 +167,9 @@ const Home = () => {
       {/* categories */}
       <div className="categories_section container mx-auto px-3 py-8">
         <h2 className="font-bold text-2xl mb-5">We Proudly Sell</h2>
-        <div className="flex justify-around gap-3 border rounded-md">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 justify-around gap-3 border rounded-md">
           {categories?.data?.map((category: { name: string }, i: number) => (
-            <div key={i} className="item  p-5 flex flex-col gap-3">
+            <div key={i} className="item p-5 flex flex-col gap-3 items-center">
               <img
                 className="w-16 h-16 object-cover"
                 src={`/category/${category.name.toLowerCase()}.png`}
@@ -186,6 +186,26 @@ const Home = () => {
         </div>
       </div>
 
+      {/* featured products */}
+      <div className="featured_section container mx-auto px-3 py-8">
+        <h2 className="font-bold text-2xl mb-5">Featured Products</h2>
+        {isLoading && isFetching && (
+          <Spin tip="Loading" size="large">
+            {content}
+          </Spin>
+        )}
+        {isError && <p>{(error as CustomError)?.data?.message}</p>}
+        <ScrollAnimation animateIn="fadeIn">
+          <div className="featured_products grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-7">
+            {data?.data?.slice(8, 12).map((product: TProduct) => (
+              <Fragment key={product.id}>
+                <Product item={product} />
+              </Fragment>
+            ))}
+          </div>
+        </ScrollAnimation>
+      </div>
+
       {/* newsletter section */}
       <div className="container my-8 mx-auto text-center text-white/90">
         <div className="discount newsletter rounded-md">
@@ -195,7 +215,7 @@ const Home = () => {
             </h2>
             <form
               onSubmit={newsletterHandler}
-              className="flex gap-4 items-center justify-center"
+              className="flex flex-wrap gap-4 items-center justify-center"
             >
               <input
                 className="form-input p-4 rounded-md text-black"

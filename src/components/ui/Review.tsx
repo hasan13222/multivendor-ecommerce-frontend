@@ -4,11 +4,13 @@ import { FaRegStar, FaStar } from "react-icons/fa";
 import Rating from "react-rating";
 import { useAddReviewMutation } from "../../redux/features/review/reviewApi";
 import { toast } from "sonner";
+import { useChangeOrderStatusMutation } from "../../redux/features/order/orderApi";
 
 const Review = ({ orderItem }: any) => {
   const [reviewModalOpen, setReviewModalOpen] = useState(false);
   const [rating, setRating] = useState(0);
 
+  const [cancelOrder] = useChangeOrderStatusMutation(orderItem);
   const [addReview] = useAddReviewMutation(orderItem);
 
   async function addReviewHandler(e: any) {
@@ -30,9 +32,17 @@ const Review = ({ orderItem }: any) => {
       toast("already given review");
     }
   }
+
+  async function cancelOrderHandler(){
+    const cancel = await cancelOrder({id: orderItem.id, body: {status: "Cancelled"}});
+    if(cancel.data){
+      toast("Order cancelled successfully")
+    }
+  } 
   return (
     <>
-      <Button onClick={() => setReviewModalOpen(true)}>Review</Button>
+      {orderItem?.status === "Processing" && <Button onClick={() => cancelOrderHandler()}>Cancel</Button>}
+      {orderItem?.status === "Delivered" && <Button onClick={() => setReviewModalOpen(true)}>Review</Button>}
       <Modal
         title="Add Review"
         open={reviewModalOpen}

@@ -1,9 +1,9 @@
 import type { TableProps } from "antd";
 import { TProductManage } from "../types/productType";
-import Review from "../components/ui/Review";
+import Deliver from "../components/ui/Deliver";
 
 // manage product table
-export const orderHistoryColumns: TableProps<TProductManage>["columns"] = [
+export const shopOrderHistoryColumns: TableProps<TProductManage>["columns"] = [
   {
     title: "Date",
     dataIndex: "date",
@@ -40,7 +40,7 @@ export const orderHistoryColumns: TableProps<TProductManage>["columns"] = [
     title: "Action",
     key: "action",
     render: (_, record) => {
-      return <Review orderItem={record}/>;
+      return <Deliver orderItem={record}/>;
     },
   },
 ];

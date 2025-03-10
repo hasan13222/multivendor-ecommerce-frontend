@@ -47,18 +47,12 @@ const ManageShop = () => {
     data: products,
     isError,
     error,
-    isFetching,
     isLoading,
-  } = useGetShopProductsQuery({shopId: myshop?.data?.id});
+  } = useGetShopProductsQuery({ shopId: myshop?.data?.id });
 
   return (
     <>
       <div className="container mx-auto">
-        {isLoading && isFetching && (
-          <Spin tip="Loading" size="large">
-            {content}
-          </Spin>
-        )}
         {isLoading && (
           <Spin tip="Loading" size="large">
             {content}
@@ -66,36 +60,11 @@ const ManageShop = () => {
         )}
 
         {isError && <p>{(error as CustomError)?.data?.message}</p>}
-
-        <div className="shop flex items-center gap-5 px-3 py-2">
-          <img className="h-16 object-contain" src={myshop?.data?.logo || "/store.png"} alt="store" />
-          <div>
-            <h4 className="font-medium text-sm">{myshop?.data?.name}</h4>
-            <p>{myshop?.data?.description}</p>
-            <span className="px-2 py-1 text-[12px] rounded-sm border-violet-600 border text-violet5-400">
-              {myshop?.data?.followedShop?.length || 0} following
-            </span>
-          </div>
-        </div>
       </div>
-      <div className="manage_products container mx-auto px-3 py-8">
-        <div className="flex gap-2 items-center">
-          {myshop?.data ? (
-            <button
-              onClick={() => setShopModalOpen(true)}
-              className="bg-accent py-3 px-4 mb-5 rounded-lg flex gap-2 items-center text-white"
-            >
-              <FaPlus /> <span>Update Shop</span>
-            </button>
-          ) : (
-            <button
-              onClick={() => setShopModalOpen(true)}
-              className="bg-accent py-3 px-4 mb-5 rounded-lg flex gap-2 items-center text-white"
-            >
-              <FaPlus /> <span>Add Shop</span>
-            </button>
-          )}
-
+      <div className="manage_products container mx-auto px-3">
+        <div className="flex gap-2 items-center mb-5">
+          
+      <h2 className="font-bold text-2xl">My Shop Products</h2>
           {/* add product button */}
           <ConfigProvider
             theme={{
@@ -109,7 +78,7 @@ const ManageShop = () => {
             }}
           >
             <Space>
-              <Button onClick={showModal} className="py-5 mb-5" type="primary">
+              <Button onClick={showModal} className="py-5 " type="primary">
                 {" "}
                 <FaPlus /> Add Product <span>&nbsp;</span>
               </Button>
@@ -125,7 +94,7 @@ const ManageShop = () => {
           confirmLoading={loading}
           onCancel={handleCancel}
         >
-          <ProductForm shopId={myshop?.data?.id}/>
+          <ProductForm shopId={myshop?.data?.id} />
         </Modal>
 
         {/* shop modal */}

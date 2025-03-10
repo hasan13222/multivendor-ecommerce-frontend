@@ -25,6 +25,8 @@ import Shops from "../pages/shop/Shops";
 import ProtectedPage from "../pages/ProtectedPage";
 import Dashboard from "../pages/dashboard/Dashboard";
 import DashboardLayout from "../components/layout/DashboardLayout";
+import MyTransaction from "../pages/transaction/MyTransaction";
+import MyShop from "../pages/vendor/MyShop";
 
 const router = createBrowserRouter([
   {
@@ -118,8 +120,34 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "my-shop",
+        element: (
+          <VendorProtected>
+            <DashboardLayout>
+              <MyShop />
+            </DashboardLayout>
+          </VendorProtected>
+        ),
+      },
+      {
         path: "my-order",
-        element: <MyOrder />,
+        element: (
+          <ProtectedPage>
+            <DashboardLayout>
+              <MyOrder />
+            </DashboardLayout>
+          </ProtectedPage>
+        ),
+      },
+      {
+        path: "my-transaction",
+        element: (
+          <ProtectedPage>
+            <DashboardLayout>
+              <MyTransaction />
+            </DashboardLayout>
+          </ProtectedPage>
+        ),
       },
       {
         path: "my-shop-order",

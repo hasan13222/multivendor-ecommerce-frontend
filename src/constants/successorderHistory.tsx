@@ -3,7 +3,7 @@ import { TProductManage } from "../types/productType";
 import Review from "../components/ui/Review";
 
 // manage product table
-export const orderHistoryColumns: TableProps<TProductManage>["columns"] = [
+export const successOrderHistoryColumns: TableProps<TProductManage>["columns"] = [
   {
     title: "Date",
     dataIndex: "date",
@@ -29,12 +29,6 @@ export const orderHistoryColumns: TableProps<TProductManage>["columns"] = [
     title: "Qty",
     dataIndex: "qty",
     key: "qty",
-  },
-  {
-    title: "Status",
-    dataIndex: "status",
-    key: "status",
-    render: (text) => <span className={text==="Cancelled" ? "text-red-500" : text === "Delivered" ? "text-green-500" : "text-accentColor"}>{text}</span>,
   },
   {
     title: "Action",

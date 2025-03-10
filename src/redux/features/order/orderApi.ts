@@ -25,6 +25,7 @@ const orderApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
+      providesTags: ["MyOrder"]
     }),
     getMyShopOrder: builder.query({
       query: () => {
@@ -33,8 +34,17 @@ const orderApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
+      providesTags: ["MyShopOrder"]
     }),
+    changeOrderStatus: builder.mutation({
+      query: (payload) => ({
+        url: `/order/${payload.id}`,
+        method: "PATCH",
+        body: payload.body
+      }),
+      invalidatesTags: ["MyOrder", "MyShopOrder"]
+    })
   }),
 });
 
-export const { useOrderPaymentMutation, usePlaceOrderMutation, useGetMyOrderQuery, useGetMyShopOrderQuery} = orderApi;
+export const { useOrderPaymentMutation,useChangeOrderStatusMutation, usePlaceOrderMutation, useGetMyOrderQuery, useGetMyShopOrderQuery} = orderApi;

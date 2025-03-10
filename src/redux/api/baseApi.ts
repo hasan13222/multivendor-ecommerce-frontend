@@ -20,6 +20,6 @@ export const baseApi = createApi({
     },
   }),
   
-  tagTypes: ["products", "shopProduct","cartProducts", "categories", "followedShop", "checkFollowedShop", "usershop", "allUsers", "allShop"],
+  tagTypes: ["products", "shopProduct", "MyOrder", "MyShopOrder","cartProducts", "categories", "followedShop", "checkFollowedShop", "usershop", "allUsers", "allShop"],
   endpoints: () => ({}),
 });

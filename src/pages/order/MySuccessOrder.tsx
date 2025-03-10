@@ -2,9 +2,9 @@ import { Spin, Table } from "antd";
 import { content } from "../../components/ui/Loading";
 import { CustomError } from "../../types/baseQueryApi";
 import { useGetMyOrderQuery } from "../../redux/features/order/orderApi";
-import { orderHistoryColumns } from "../../constants/orderHistory";
+import { successOrderHistoryColumns } from "../../constants/successorderHistory";
 
-const MyOrder = () => {
+const MySuccessOrder = () => {
   // get all products
   const {
     data: products,
@@ -27,14 +27,14 @@ const MyOrder = () => {
 
         {isError && <p>{(error as CustomError)?.data?.message}</p>}
       </div>
-      <div className="manage_products container mx-auto px-3">
-      <h2 className="font-bold text-2xl mb-5">My Order</h2>
+      <div className="manage_products container mx-auto">
+      <h2 className="font-semibold text-base my-3">My Successful Order History</h2>
         {/* products table */}
         <div className="overflow-auto">
           <Table
             style={{ minWidth: "750px" }}
-            columns={orderHistoryColumns}
-            dataSource={modifiedData}
+            columns={successOrderHistoryColumns}
+            dataSource={modifiedData?.filter((item:any) => item.status === "Delivered")}
             rowKey={(record) => record.id}
           />
         </div>
@@ -43,4 +43,4 @@ const MyOrder = () => {
   );
 };
 
-export default MyOrder;
+export default MySuccessOrder;

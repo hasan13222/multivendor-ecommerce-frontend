@@ -45,13 +45,23 @@ export const menuItems:{title: string;path: string, access: string}[] = [
         access: "Admin",
     },
     {
-        title: 'Manage Shop',
+        title: 'Manage Shop Products',
         path: '/manage-shop',
+        access: "Vendor",
+    },
+    {
+        title: 'My Shop',
+        path: '/my-shop',
         access: "Vendor",
     },
     {
         title: 'My Order',
         path: '/my-order',
+        access: "Customer",
+    },
+    {
+        title: 'My Transaction',
+        path: '/my-transaction',
         access: "Customer",
     },
     {

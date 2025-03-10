@@ -27,6 +27,7 @@ import {
 } from "recharts";
 
 import AutoSizer from "react-virtualized-auto-sizer";
+import MySuccessOrder from "../order/MySuccessOrder";
 
 const Dashboard = () => {
   const [customerChartData, setCustomerChartData] = useState<
@@ -78,7 +79,7 @@ const Dashboard = () => {
   }, [users]);
   return (
     <>
-      <h2 className="font-bold text-3xl mb-2">Dashboard</h2>
+      <h2 className="font-bold text-2xl mb-2">Dashboard</h2>
       {decoded?.role === "Vendor" && (
         <Card title="Summary">
           <div className="grid grid-cols-2 gap-4">
@@ -104,6 +105,7 @@ const Dashboard = () => {
         </Card>
       )}
       {decoded?.role === "Customer" && (
+        <>
         <Card title="Summary">
           <div className="grid grid-cols-2 gap-4">
             <Card
@@ -115,8 +117,22 @@ const Dashboard = () => {
                 <CountUp end={customerProducts?.data?.length} />
               </p>
             </Card>
+            <Card
+              type="inner"
+              title="Order Successful"
+              extra={<a href="my-order">Details</a>}
+            >
+              <p className="text-xl font-semibold">
+                <CountUp end={customerProducts?.data?.filter((item:any) => item.status === "Delivered").length} />
+              </p>
+            </Card>
           </div>
+
+          {/* successful order */}
+          <MySuccessOrder/>
         </Card>
+        
+        </>
       )}
       {decoded?.role === "Admin" && (
         <>

@@ -19,9 +19,9 @@ const transactionApi = baseApi.injectEndpoints({
       },
     }),
     getMyShopTransaction: builder.query({
-      query: () => {
+      query: (shopId) => {
         return {
-          url: "/transaction/my-shop-transaction",
+          url: `/transaction/my-shop-transaction/${shopId}`,
           method: "GET",
         };
       },

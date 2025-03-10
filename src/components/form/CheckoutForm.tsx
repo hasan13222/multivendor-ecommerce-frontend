@@ -130,21 +130,7 @@ const CheckoutForm = () => {
   };
   return (
     <>
-      {isLoading && (
-        <Spin tip="Loading" size="large">
-          {content}
-        </Spin>
-      )}
-      {loading && (
-        <Spin tip="Loading" size="large">
-          {content}
-        </Spin>
-      )}
-      {orderLoading && (
-        <Spin tip="Loading" size="large">
-          {content}
-        </Spin>
-      )}
+      
 
       {/* checkout form */}
       <form
@@ -252,6 +238,22 @@ const CheckoutForm = () => {
           />
         </div>
       </form>
+
+      {isLoading && (
+        <Spin tip="Loading" size="large">
+          {content}
+        </Spin>
+      )}
+      {loading && (
+        <Spin tip="Loading" size="large">
+          {content}
+        </Spin>
+      )}
+      {orderLoading && (
+        <Spin tip="Loading" size="large">
+          {content}
+        </Spin>
+      )}
     </>
   );
 };

@@ -30,8 +30,7 @@ const CheckoutForm = () => {
 
   const [doPayment, { isLoading, isError, error }] =
     useOrderPaymentMutation(undefined);
-  const [doOrder, { isLoading: orderLoading }] =
-    usePlaceOrderMutation(undefined);
+  const [doOrder] = usePlaceOrderMutation(undefined);
 
   const {
     register,
@@ -118,9 +117,9 @@ const CheckoutForm = () => {
             if (orderResult.data?.success) {
               localStorage.removeItem("cartItems");
               setLoading(false);
-              dispatch(setCart([]))
+              dispatch(setCart([]));
               toast("Order Placed Success");
-              navigate('/')
+              navigate("/");
             } else {
               setLoading(false);
             }
@@ -130,8 +129,6 @@ const CheckoutForm = () => {
   };
   return (
     <>
-      
-
       {/* checkout form */}
       <form
         className="flex flex-col gap-3 max-w-[400px]"
@@ -209,8 +206,19 @@ const CheckoutForm = () => {
         <div className="gap-2">
           <p>Use "B71" to get Bijoy Dibash discount.</p>
           <br />
-          <input className="border px-2 py-1 rounded-sm" ref={couponRef} type="text" placeholder="Coupon code" />
-          <button type="button" className="bg-orange-300 py-1 px-2" onClick={couponHandler}>Apply</button>
+          <input
+            className="border px-2 py-1 rounded-sm"
+            ref={couponRef}
+            type="text"
+            placeholder="Coupon code"
+          />
+          <button
+            type="button"
+            className="bg-orange-300 py-1 px-2"
+            onClick={couponHandler}
+          >
+            Apply
+          </button>
         </div>
         <p>You have got ${discount} Disount</p>
         <p>Please pay ${(state.totalPrice - discount).toFixed(2)}</p>
@@ -245,11 +253,6 @@ const CheckoutForm = () => {
         </Spin>
       )}
       {loading && (
-        <Spin tip="Loading" size="large">
-          {content}
-        </Spin>
-      )}
-      {orderLoading && (
         <Spin tip="Loading" size="large">
           {content}
         </Spin>

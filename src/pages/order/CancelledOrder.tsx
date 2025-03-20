@@ -4,7 +4,7 @@ import { CustomError } from "../../types/baseQueryApi";
 import { useGetMyOrderQuery } from "../../redux/features/order/orderApi";
 import { successOrderHistoryColumns } from "../../constants/successorderHistory";
 
-const MySuccessOrder = () => {
+const CancelledOrder = () => {
   // get all products
   const {
     data: products,
@@ -28,14 +28,13 @@ const MySuccessOrder = () => {
         {isError && <p>{(error as CustomError)?.data?.message}</p>}
       </div>
       <div className="manage_products container mx-auto">
-      <h2 className="font-semibold text-base my-3">Your Recent Order</h2>
+      <h2 className="font-semibold text-base my-3">My Cancelled Order</h2>
         {/* products table */}
         <div className="overflow-auto">
           <Table
             style={{ minWidth: "750px" }}
-            pagination={false}
             columns={successOrderHistoryColumns}
-            dataSource={modifiedData?.filter((item:any) => item.status === "Delivered").slice(0,5)}
+            dataSource={modifiedData?.filter((item:any) => item.status === "Cancelled")}
             rowKey={(record) => record.id}
           />
         </div>
@@ -44,4 +43,4 @@ const MySuccessOrder = () => {
   );
 };
 
-export default MySuccessOrder;
+export default CancelledOrder;

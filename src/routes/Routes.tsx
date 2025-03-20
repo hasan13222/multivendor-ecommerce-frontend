@@ -27,6 +27,11 @@ import Dashboard from "../pages/dashboard/Dashboard";
 import DashboardLayout from "../components/layout/DashboardLayout";
 import MyTransaction from "../pages/transaction/MyTransaction";
 import MyShop from "../pages/vendor/MyShop";
+import CancelledOrder from "../pages/order/CancelledOrder";
+import OrderToRecieve from "../pages/order/OrderToRecieve";
+import MyShopTransaction from "../pages/transaction/MyShopTransaction";
+import MyShopCancelledOrder from "../pages/order/MyShopCancelledOrder";
+import OrderToDeliver from "../pages/order/OrderToDeliver";
 
 const router = createBrowserRouter([
   {
@@ -140,6 +145,26 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "my-order-to-recieve",
+        element: (
+          <ProtectedPage>
+            <DashboardLayout>
+              <OrderToRecieve />
+            </DashboardLayout>
+          </ProtectedPage>
+        ),
+      },
+      {
+        path: "my-cancelled-order",
+        element: (
+          <ProtectedPage>
+            <DashboardLayout>
+              <CancelledOrder />
+            </DashboardLayout>
+          </ProtectedPage>
+        ),
+      },
+      {
         path: "my-transaction",
         element: (
           <ProtectedPage>
@@ -154,6 +179,30 @@ const router = createBrowserRouter([
         element: (
           <DashboardLayout>
             <MyShopOrder />
+          </DashboardLayout>
+        ),
+      },
+      {
+        path: "my-shop-order-to-deliver",
+        element: (
+          <DashboardLayout>
+            <OrderToDeliver />
+          </DashboardLayout>
+        ),
+      },
+      {
+        path: "my-shop-cancelled-order",
+        element: (
+          <DashboardLayout>
+            <MyShopCancelledOrder />
+          </DashboardLayout>
+        ),
+      },
+      {
+        path: "my-shop-transaction",
+        element: (
+          <DashboardLayout>
+            <MyShopTransaction />
           </DashboardLayout>
         ),
       },

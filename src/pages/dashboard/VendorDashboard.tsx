@@ -1,5 +1,5 @@
 import CountUp from "react-countup";
-import { Card } from "antd";
+import { Card, Table } from "antd";
 import {
   AreaChart,
   Area,
@@ -13,6 +13,7 @@ import { useMemo } from "react";
 import { useGetMyShopQuery } from "../../redux/features/shop/shopApi";
 import { useGetMyShopOrderQuery } from "../../redux/features/order/orderApi";
 import AutoSizer from "react-virtualized-auto-sizer";
+import { shopOrderStatusColumns } from "../../constants/shopOrderStatus";
 const VendorDashboard = () => {
   // my shop
   const { data: myshop } = useGetMyShopQuery(undefined);
@@ -30,6 +31,12 @@ const VendorDashboard = () => {
 
   //   my shop order
   const { data: myshopOrders } = useGetMyShopOrderQuery(undefined);
+
+  const modifiedData = useMemo(() => {
+    return myshopOrders?.data?.map((item: any) => {
+      return { id: item.id, name: item.product.name, status: item.status, price: item.product.price, qty: item.qty, code: item.product.code, date: item.createdAt, productId: item.product.id }
+    })
+  }, [myshopOrders])
 
   const revenuesByProductCode = useMemo(() => {
     const revenues: Record<string, number> = {};
@@ -102,6 +109,22 @@ const VendorDashboard = () => {
             );
           }}
         </AutoSizer>
+      </Card>
+
+      <Card>
+        <div className="manage_products container mx-auto px-3">
+          <h2 className="font-bold text-3xl mb-5">Recent Delivered Order</h2>
+          {/* products table */}
+          <div className="overflow-auto">
+            <Table
+              style={{ minWidth: "750px" }}
+              columns={shopOrderStatusColumns}
+              pagination={false}
+              dataSource={modifiedData?.filter((item: any) => item.status === "Delivered").slice(0,5)}
+              rowKey={(record) => record.id}
+            />
+          </div>
+        </div>
       </Card>
     </>
   );

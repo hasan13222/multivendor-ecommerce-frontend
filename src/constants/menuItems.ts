@@ -60,6 +60,16 @@ export const menuItems:{title: string;path: string, access: string}[] = [
         access: "Customer",
     },
     {
+        title: 'Order To Recieve',
+        path: '/my-order-to-recieve',
+        access: "Customer",
+    },
+    {
+        title: 'My Cancelled Order',
+        path: '/my-cancelled-order',
+        access: "Customer",
+    },
+    {
         title: 'My Transaction',
         path: '/my-transaction',
         access: "Customer",
@@ -67,6 +77,21 @@ export const menuItems:{title: string;path: string, access: string}[] = [
     {
         title: 'My Shop Order',
         path: '/my-shop-order',
+        access: "Vendor",
+    },
+    {
+        title: 'Order To Deliver',
+        path: '/my-shop-order-to-deliver',
+        access: "Vendor",
+    },
+    {
+        title: 'Cancelled Order History',
+        path: '/my-shop-cancelled-order',
+        access: "Vendor",
+    },
+    {
+        title: 'My Shop Transaction',
+        path: '/my-shop-transaction',
         access: "Vendor",
     },
 ]

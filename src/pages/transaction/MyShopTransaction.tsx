@@ -1,21 +1,21 @@
 import { Spin, Table } from "antd";
 import { content } from "../../components/ui/Loading";
 import { CustomError } from "../../types/baseQueryApi";
-import { useGetMyShopOrderQuery } from "../../redux/features/order/orderApi";
-import { shopOrderHistoryColumns } from "../../constants/shopOrderHistory";
+import { useGetMyShopTransactionQuery } from "../../redux/features/transaction/transactionApi";
+import { transactionHistoryColumns } from "../../constants/transactionCols";
+import { useGetMyShopQuery } from "../../redux/features/shop/shopApi";
 
-const MyShopOrder = () => {
+const MyShopTransaction = () => {
+    
+      const { data: myshop } = useGetMyShopQuery(undefined);
   // get all products
   const {
-    data: products,
+    data,
     isError,
     error,
     isFetching,
     isLoading,
-  } = useGetMyShopOrderQuery({});
-  const modifiedData = products?.data?.map((item:any) => {
-    return {id: item.id, name: item.product.name, status: item.status, price: item.product.price, qty: item.qty, code: item.product.code, date: item.createdAt, productId: item.product.id}
-  })
+  } = useGetMyShopTransactionQuery(myshop?.data?.id);
 
   return (
     <>
@@ -29,15 +29,15 @@ const MyShopOrder = () => {
         {isError && <p>{(error as CustomError)?.data?.message}</p>}
       </div>
       <div className="manage_products container mx-auto px-3">
-      <h2 className="font-bold text-3xl mb-5">My Shop Order History</h2>
+      <h2 className="font-bold text-2xl mb-5">My Shop Transaction History</h2>
         {/* products table */}
         <div className="overflow-auto">
           <Table
             style={{ minWidth: "750px" }}
-            columns={shopOrderHistoryColumns}
-            dataSource={modifiedData}
+            columns={transactionHistoryColumns}
+            dataSource={data?.data}
             rowKey={(record) => record.id}
-            pagination={{pageSize: 6}}
+            pagination={{pageSize: 7}}
           />
         </div>
       </div>
@@ -45,4 +45,4 @@ const MyShopOrder = () => {
   );
 };
 
-export default MyShopOrder;
+export default MyShopTransaction;

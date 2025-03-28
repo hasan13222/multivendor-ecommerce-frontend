@@ -178,6 +178,7 @@ const SingleProduct = () => {
                 emptySymbol={<FaRegStar className="text-primary" />}
                 placeholderSymbol={<FaStar className="text-primary" />}
                 fullSymbol={<FaStar className="text-primary" />}
+                readonly={true}
               />
             </div>
             <p>(Customer Reviews)</p>
@@ -242,6 +243,7 @@ const SingleProduct = () => {
                     emptySymbol={<FaRegStar className="text-primary" />}
                     placeholderSymbol={<FaStar className="text-primary" />}
                     fullSymbol={<FaStar className="text-primary" />}
+                    readonly={true}
                   />
                   <p>{item.description} </p>
                 </div>

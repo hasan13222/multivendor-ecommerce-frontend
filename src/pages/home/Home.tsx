@@ -72,7 +72,6 @@ const Home = () => {
       </div>
 
       {/* why choose us */}
-      <ScrollAnimation animateIn="fadeIn">
         <div className="container my-8 mx-auto">
           <div className="chooseUs grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 justify-between mt-1 border rounded-md p-5">
             <div className="item flex items-center gap-3">
@@ -107,7 +106,6 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </ScrollAnimation>
 
       {/* recommended products */}
       <div className="featured_section container mx-auto px-3 py-5">
